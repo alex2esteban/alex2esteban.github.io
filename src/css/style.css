@@ -9,10 +9,10 @@
   --text: 'Lato';
 
   /* colors */
-  --primary: #69BF70;
+  --primary: #046A38;
   --secondary: #fff;
   --accent: #956B79;
-  --vibrant: #69BF70;
+  --vibrant: #046A38;
 
   --black: #212621;
   --black-75: #3b3f3b;
@@ -56,7 +56,7 @@ h1, h2, h3, h4 {
 
 h1 {
   font-size: var(--ts3);
-  margin-top: 64px;
+  padding-top: 64px;
   margin-bottom: 32px;
 }
 
@@ -95,7 +95,7 @@ main {
   margin: 0 auto;
   min-height: 101vh;
 }
-main>h1, main>div:not(.post-taiwan) {
+main>h1, main>section, main>div:not(.post-taiwan) {
   padding-right: var(--sep-128);
   padding-left: var(--sep-128);
 }
@@ -221,4 +221,8 @@ img {
   background: var(--vibrant);
   z-index: -1;
   clip-path: polygon(1% 0%, 100% 0%, 99% 100%, 0% 100%);
+}
+
+html {
+  scroll-behavior: smooth;
 }
