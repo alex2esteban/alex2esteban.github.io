@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>àlex | About</title>
+  <title>àlex | Dynamic Spectrum Access</title>
   <link rel="icon" href="images/favicon.ico?v=1" type="image/x-icon" />
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/navbar.css">
@@ -28,17 +28,72 @@
 </header>
 <main>
   
-<h1 class="vibrant">About</h1>
-<div class="about">
-  <div class="about-pic">
-    <img src="/images/dtt-25.jpg" alt="about"/>
-  </div>
-  <div class="experience">
-    <p>Àlex holds engineering degrees in both Aerospace and Network Engineering. He currently works as a consultant specializing in cyber risks, enabling clients to elevate their strategies and drive transformation.</p>
-    <p>He is focused on developing his skills and gaining diverse experiences to navigate the evolving technology landscape.</p>
-    <p>Outside of work, he enjoys reading across various genres, learning languages, and exploring new technologies.</p>
-  </div>
-</div>
+<h1 class="vibrant">Dynamic Spectrum Access</h1>
+<h1>Motivation</h1>
+<p>The spectrum has been traditionally allocated statically over large regions (provinces) and for long times. The demand has increased, and there are portions underutilized (ex: areas with no population like deserts), so it is not efficient. Dynamic Spectrum Access (DSA) techniques solve this.
+![[Pasted image 20230301132033.png|400]]
+Spectrum holes appear when primary users don't transmit.</p>
+<h1>Dynamic Spectrum Access (DSA)</h1>
+<p>These techniques involve 4 basic properties (explained later):</p>
+<ol>
+<li>Spectrum Sensing</li>
+<li>Spectrum Decision</li>
+<li>Spectrum Sharing</li>
+<li>Spectrum Mobility
+These basic properties can be enabled by the technology Cognitive Radio (CR).
+Cognitive Radio (CR) is a technology that adapts the PHY layer based on the environment.
+It is based on Software Defined Radio (SDR), which moves the PHY layer functions to software (hardware is simpler), allowing for more flexible devices.</li>
+</ol>
+<h2>Spectrum management in a DSA scenario</h2>
+<p>We define:</p>
+<ul>
+<li>Primary network: legitimate (licensed) users of a certain spectrum band</li>
+<li>Secondary network: users without a license to operate in a desired band (white space users) - Additional functionalities required (CR/DSA) - Capable of operating in licensed/unlicensed spectrum - Coordinated through base stations or ad-hoc operation - May include spectrum brokers (centtralize info about white spaces ; sharing; fees)
+DSA/CR netowrks need:</li>
+<li>avoid interferences with primary users</li>
+<li>secondary users should still have QoS
+Thus, the 4 basic properties require cross-layer design (not only PHY layer, but whole stack), which allows communication between non-adjacent layers, by having 2 elements in contact with all the layers.
+=&gt; spectrum management affects all the layers</li>
+</ul>
+<h2>Properties</h2>
+<h3>1. Spectrum sensing</h3>
+<p>Techniques to detect “white spaces”.
+How? detection of weak signal from primary transmitters (3 options)</p>
+<ul>
+<li>Matched filter: recognize primary transmissions (requires a priori´knowledge of tx signals) -&gt; complex</li>
+<li>Energy detection: using threshold -&gt; unreliable (energy can come from anywhere, like noise)</li>
+<li>Feature detection (hybrid): coherent signal (not the exact signal, e.g. a tone. we'll assume it is not noise, it's intelligent, so we know that the primary user is using the spectrum) detection ignoring noise
+Problems: hidden node problem =&gt; secondary user may not detect the primary transmitter and think it is a white space
+Solution: amount of interference stays below a threshold (interference temperature), which is tolerated and does not degrade performance.</li>
+</ul>
+<h3>2. Spectrum decision</h3>
+<p>Select best available channel.</p>
+<ol>
+<li>Estimate available capacity of white spaces</li>
+<li>Select most appropriate spectrum band supporting the desired QoS (maybe assigning non-contiguous channels: using more than 1 white space)</li>
+</ol>
+<h3>3. Spectrum sharing</h3>
+<p>Coordinate shared access to selected channel (among different secondary users)
+We need to decide:</p>
+<ul>
+<li>Architecture: centralized or distributed)</li>
+<li>Allocation scheme: cooperative (near optimal) or non-cooperative/selfish (not-likely-to-be-optimal)</li>
+<li>Access: overlay sharing(use only white spaces) or underlay sharing (apply interference temperature to use primary user bands)</li>
+</ul>
+<h3>4. Spectrum mobility</h3>
+<p>Vacate channel to avoid interference with legitimate channel owners</p>
+<ul>
+<li>if primary transmissions appear -&gt; secondary users may need to move</li>
+<li>Spectrum handoff (after the handover, adapt to new channel): smooth and fast</li>
+</ul>
+<h1>Current status</h1>
+<p>For TV transmissions white spaces, there is no need for [1. Spectrum sensing], only the use of a database</p>
+<hr>
+<h3>Abbreviations</h3>
+<ul>
+<li>VM: Virtual Machine</li>
+</ul>
+
 </main>
 <footer class="footer">
   <div>

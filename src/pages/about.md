@@ -6,7 +6,7 @@ permalink: /about.html
 <div class="about">
 
   <div class="about-pic">
-    <img src="/images/dtt-bw.jpg" alt="about"/>
+    <img src="/images/dtt-25.jpg" alt="about"/>
   </div>
 
   <div class="experience">
