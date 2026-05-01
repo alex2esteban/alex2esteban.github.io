@@ -27,7 +27,9 @@
   }
 }
 
-@media (max-width: 800px) {
+
+@media (max-width: 990px) { /* iPad vertical */
+
   .menu-toggle {
     display: block;
     background: none;
@@ -37,26 +39,61 @@
     padding: 4px 10px;
   }
 
+  nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 24px;
+  }
   nav ul {
-    display: none;
+    flex-basis: 100%;
+    width: 100%;
 
-    position: absolute;
-    top: 120%;
-    left: 50%;
-    transform: translateX(-50%);
-
+    display: flex;
     flex-direction: column;
-    gap: 6px;
+    align-items: center;
 
-    padding: 8px;
-    border-radius: 12px;
+    gap: 0px;
+    margin: 0;
+    padding: 0;
 
-    background: rgba(255,255,255,0.8);
-    backdrop-filter: blur(10px);
+    max-height: 0;
+    overflow: hidden;
+
+    opacity: 0;
+    transform: translateY(-6px);
+
+    transition: max-height 0.25s ease, opacity 0.2s ease, transform 0.2s ease;
+
+    pointer-events: none;
+  }
+
+  nav.open {
+    border-radius: 24px; 
   }
 
   nav.open ul {
-    display: flex;
+    max-height: 300px; /* enough for your links */
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    
+  }
+}
+
+
+@media only screen and (max-width: 640px) { /* iPhone */
+  :root {
+    /* type sclaing */
+    --ts1: 1.2rem;
+    --ts2: 1.44rem;
+    --ts3: 1.728rem;
+    --ts4: 2.074rem;
+    
+    --sep-128: 32px;
+    --sep-256: 128px;
   }
 }
 

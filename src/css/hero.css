@@ -6,14 +6,15 @@ hero {
   flex-direction: column;
   justify-content: flex-start;
   align-items: initial;
-  min-height: 100vh;
+  min-height: 70vh;
   margin-left: var(--sep-128);
+  margin-top: 64px;
 }
 hero>p {
   padding-top: 8px;
 }
 hero>div {
-  height: calc(100vh - 168px);
+  height: calc(70vh - 168px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
