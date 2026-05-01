@@ -27,32 +27,36 @@
   }
 }
 
-@media only screen and (max-width: 640px) { /* iPhone */
-  :root {
-    /* type sclaing */
-    --ts1: 1.2rem;
-    --ts2: 1.44rem;
-    --ts3: 1.728rem;
-    --ts4: 2.074rem;
-    
-    --sep-128: 32px;
-    --sep-256: 128px;
+@media (max-width: 800px) {
+  .menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    padding: 4px 10px;
   }
 
-  nav {
-    display: inline-block;
-    padding: 8px 0;
-    width: 100%;
-    margin: 0;
+  nav ul {
+    display: none;
+
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    flex-direction: column;
+    gap: 6px;
+
+    padding: 8px;
+    border-radius: 12px;
+
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(10px);
   }
 
-  nav a:not(.alex) {
-    margin: 0;
-    width: 128px;
-  }
-  nav a.alex {
-    margin: 0;
-    margin-bottom: 8px;
+  nav.open ul {
+    display: flex;
   }
 }
 
