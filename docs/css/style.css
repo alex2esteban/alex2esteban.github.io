@@ -11,7 +11,7 @@
   /* colors */
   --primary: #046A38;
   --secondary: #fff;
-  --accent: #956B79;
+  --accent: #C87FEB;
   --vibrant: #046A38;
 
   --black: #212621;
@@ -104,7 +104,7 @@ footer {
   display: flex;
   justify-content: space-between;
   background-color: var(--black);
-  margin-top: auto;
+  margin-top: 64px;
   color: var(--black-25);
   padding: 0 var(--sep-128);
 }

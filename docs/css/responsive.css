@@ -27,6 +27,63 @@
   }
 }
 
+
+@media (max-width: 990px) { /* iPad vertical */
+
+  .menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    padding: 4px 10px;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 24px;
+  }
+  nav ul {
+    flex-basis: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 0px;
+    margin: 0;
+    padding: 0;
+
+    max-height: 0;
+    overflow: hidden;
+
+    opacity: 0;
+    transform: translateY(-6px);
+
+    transition: max-height 0.25s ease, opacity 0.2s ease, transform 0.2s ease;
+
+    pointer-events: none;
+  }
+
+  nav.open {
+    border-radius: 24px; 
+  }
+
+  nav.open ul {
+    max-height: 300px; /* enough for your links */
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    
+  }
+}
+
+
 @media only screen and (max-width: 640px) { /* iPhone */
   :root {
     /* type sclaing */
@@ -37,22 +94,6 @@
     
     --sep-128: 32px;
     --sep-256: 128px;
-  }
-
-  nav {
-    display: inline-block;
-    padding: 8px 0;
-    width: 100%;
-    margin: 0;
-  }
-
-  nav a:not(.alex) {
-    margin: 0;
-    width: 128px;
-  }
-  nav a.alex {
-    margin: 0;
-    margin-bottom: 8px;
   }
 }
 
