@@ -193,6 +193,10 @@ img {
   width: auto;
 }
 
+.black {
+  color: var(--black);
+}
+
 .black-75 {
   color: var(--black-75);
 }
