@@ -1,31 +1,24 @@
-hero {
+.hero{
   --transition: 0.4s;
-  --pad-8: 8px;
 
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: initial;
-  margin-left: var(--sep-128);
-  margin-top: 64px;
+  margin-top: var(--sep-160);
 }
-hero>p {
-  padding-top: 8px;
+.hero>p {
+  padding-top: var(--sep-8);
 }
-hero>div {
+.hero {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-top: 96px;
-  max-width: 800px;
-}
-hero h3 {
-  font-weight: 400;
-}
-
-.hero {
-  margin-top: 0;
+  max-width: 720px;
   margin-right: var(--sep-128);
+}
+.hero h3 {
+  font-weight: 400;
 }
 .hero>p{
   font-size: var(--ts3);
@@ -33,54 +26,9 @@ hero h3 {
   color: var(--black-75);
 }
 
-.menu {
-  bottom: 0;
-  margin-bottom: calc(8*var(--pad-8));
-  margin-top: 0px;
-}
-.menu h3 {
-  font-weight: bold;
-  padding: var(--pad-8) 0;
-  border-bottom: 1px solid var(--black);
-}
-.menu a {
-  display: block;
-  color: var(--black);
-  text-decoration: none;
-  width: 100%;
-  padding: var(--pad-8) 0;
-  transition: var(--transition);
-}
-.menu ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-.menu li {
-  text-decoration: none;
-  border-bottom: 1px solid var(--black-25);
-  transition: var(--transition);
-}
-.menu li:hover {
-  border-bottom: 1px solid var(--black);
-  transition: var(--transition);
-}
-.menu a:hover {
-  width: calc(100% - var(--pad-8));
-  padding-left: var(--pad-8);
-  color: var(--primary);
-  font-weight: bold;
-  transition: var(--transition);
-}
 
 @media only screen and (min-width: 641px) { /* iPhone */
   hero>div {
     justify-content: flex-start;
-  }
-  
-  .menu{
-    margin-top: 96px;
-    margin-right: 0;
-    margin-left: 0;
   }
 }

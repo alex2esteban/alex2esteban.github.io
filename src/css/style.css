@@ -30,7 +30,9 @@
   --ts4: 3.157rem;
 
   /* paddings and margins */
+  --sep-8: 8px;
   --sep-128: 128px;
+  --sep-160: 160px;
   --sep-256: 256px;
 }
 

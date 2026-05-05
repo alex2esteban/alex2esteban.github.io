@@ -42,10 +42,17 @@ nav a, nav button {
   display: inline-block;
 }
 
-nav a:hover, nav button:hover {
-  background: rgba(255, 255, 255, 0.9);
+
+/* Desktop (real hover devices) */
+@media (hover: hover) {
+  nav a:hover,
+  nav button:hover {
+    background: rgba(255, 255, 255, 0.9);
+  }
 }
 
-.menu-toggle {
-  display: none;
+/* Mobile / touch (tap feedback only while pressing) */
+nav a:active,
+nav button:active {
+  background: rgba(255, 255, 255, 0.9);
 }
