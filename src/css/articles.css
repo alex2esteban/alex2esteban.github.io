@@ -5,9 +5,15 @@
   margin-bottom: 20px;
 }
 
+.article-note {
+  color: var(--black-75);
+  font-size: 0.9em;
+  font-style: italic;
+}
+
 /* Main content */
 .main-content {
-  max-width: 800px;
+  max-width: 780px;
 }
 
 /* Contents sidebar */
@@ -43,3 +49,71 @@
 }
 
 
+/* ------------------ Headings ------------------ */
+
+.layout h2 {
+  margin-top: 32px;
+  margin-bottom: 8px;
+}
+
+.layout h3 {
+  margin-top: 16px;
+}
+
+/* ------------------ Table styling ------------------ */
+.layout table {
+  border-collapse: collapse;
+  text-align: left;
+  margin-bottom: 16px;
+  font-size: 0.9em;
+}
+
+.layout th, .layout td {
+  text-align: left;
+  padding: 4px 16px;
+  vertical-align: top;
+}
+
+.layout tr {
+  border-bottom: 1px solid var(--black-25);
+}
+
+.layout tr:last-child {
+  border-bottom: none;
+}
+
+.layout thead th {
+  border-bottom: 1px solid var(--black-75);
+}
+
+/* ------------------ ul ------------------ */
+.layout ul, .layout ol {
+  margin: 0;
+}
+
+/* ------------------ Other ------------------ */
+.no-spacing>p {
+  margin: 0;
+  margin-bottom: 2px;
+}
+
+.no-spacing {
+  margin-bottom: 8px;
+}
+
+
+
+@media (max-width: 1280px) {
+  .contents-table {
+    float: none;
+    position: relative;
+    top: auto;
+    width: 100%;
+    margin-left: 0;
+    margin-bottom: 20px;
+  }
+
+  .main-content {
+    max-width: 100%;
+  }
+}

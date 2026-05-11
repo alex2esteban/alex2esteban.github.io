@@ -27,6 +27,17 @@
 }
 
 
+.article-link {
+  display: flex;
+  align-items: flex-start;
+  gap: 1em; /* space between arrow and text */
+}
+
+.article-arrow {
+  flex-shrink: 0; /* keeps arrow fixed */
+}
+
+
 @media only screen and (min-width: 641px) { /* iPhone */
   hero>div {
     justify-content: flex-start;
