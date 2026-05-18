@@ -103,6 +103,34 @@
   color: var(--black-50);
 }
 
+.hanzi {
+  position: relative;
+  border-bottom: 1px dotted var(--black-75);
+}
+
+.hanzi::after {
+  font-family: 'Noto Sans SC';
+  content: attr(data-pinyin);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 120%;
+  background: var(--black-75);
+  color: white;
+  padding: 1px 6px;
+  font-size: 0.55em;
+  border-radius: 4px;
+  white-space: nowrap;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s;
+}
+
+.hanzi:active::after {
+  opacity: 1;
+}
+
 /* ------------------ Other ------------------ */
 .no-spacing>p {
   margin: 0;
