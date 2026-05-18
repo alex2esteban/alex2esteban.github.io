@@ -121,13 +121,13 @@
   font-size: 0.55em;
   border-radius: 4px;
   white-space: nowrap;
+  pointer-events: none;
 
   opacity: 0;
-  pointer-events: none;
   transition: opacity 0.15s;
 }
 
-.hanzi:active::after {
+.hanzi:focus::after {
   opacity: 1;
 }
 
