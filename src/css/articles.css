@@ -57,7 +57,8 @@
 }
 
 .layout h3 {
-  margin-top: 16px;
+  margin-top: 24px;
+  margin-bottom: 8px;
 }
 
 /* ------------------ Table styling ------------------ */
@@ -105,6 +106,15 @@
 
 .hanzi {
   position: relative;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hanzi::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  bottom: -2px;
   border-bottom: 1px dotted var(--black-75);
 }
 
@@ -115,8 +125,7 @@
   left: 50%;
   transform: translateX(-50%);
   bottom: 120%;
-  background: var(--black-75);
-  color: white;
+  background: var(--black-25);
   padding: 1px 6px;
   font-size: 0.55em;
   border-radius: 4px;

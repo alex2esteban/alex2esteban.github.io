@@ -1,5 +1,5 @@
 ---
-title: Method for learning vocabulary
+title: The system I use to actually retain vocabulary (no flashcards)
 date: 2026-04-26
 ---
 
@@ -124,7 +124,7 @@ date: 2026-04-26
       <p class="article-note">Note: 60 words per week base</p>
     <h2 id="progress-tracking">Progress Tracking</h2>
       <p>Steps to track vocabulary learned:</p>
-      <p>1. Create the story (refer to *Workflow*) 								— Sunday 0</p>
+      <p>1. Create the story (refer to <i><a href="#workflow">Workflow</a></i>) 								— Sunday 0</p>
       <p>2. Review 															— Monday 1</p>
       <p>3. Select in the column "final phase" if i get the meaning 				— Sunday 1</p>
       <p>4. Check the words again without meaning to see if i really learned them 	— Sunday 3</p>

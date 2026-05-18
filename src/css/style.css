@@ -45,6 +45,7 @@ body {
   letter-spacing: 0.01em;
   background-color: var(--secondary);
   margin: 0 auto;
+  color: var(--black);
   
   display: flex;
   flex-direction: column;
