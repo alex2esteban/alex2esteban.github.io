@@ -3,7 +3,7 @@ title: 汪苏泷、BY2《有点甜》
 date: 2026-01-01
 ---
 
-<div class="song">
+<div class="song" tabindex="0">
 
   <p>汪：摘一颗苹果</p>
   <p>等你从门前经过</p>

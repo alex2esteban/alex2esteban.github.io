@@ -131,6 +131,10 @@
   opacity: 1;
 }
 
+.song:focus .hanzi::after {
+  opacity: 0;
+}
+
 /* ------------------ Other ------------------ */
 .no-spacing>p {
   margin: 0;
