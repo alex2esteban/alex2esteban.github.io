@@ -94,7 +94,7 @@
 /* ------------------ Songs ------------------ */
 @font-face {
   font-family: 'KaiTi';
-  src: url("../fonts/simkai.woff") format("woff");
+  src: url("/docs/fonts/simkai.woff") format("woff");
 }
 
 .song {
