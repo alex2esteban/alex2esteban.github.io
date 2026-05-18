@@ -39,7 +39,7 @@
 /* inclou tot: header, primary & footer */
 body {
   font-family: var(--text), 'Roboto', sans-serif;
-  font-size: var(--ts);
+  font-size: var(--ts0);
   line-height: 24px;
   letter-spacing: 0.01em;
   background-color: var(--secondary);
