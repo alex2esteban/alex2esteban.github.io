@@ -93,12 +93,12 @@
 
 /* ------------------ Songs ------------------ */
 @font-face {
-  font-family: 'KaiTi';
+  font-family: 'KaiTiwoff';
   src: url("/fonts/simkai.woff") format("woff");
 }
 
 .song {
-  font-family: 'KaiTi';
+  font-family: 'KaiTiwoff', 'KaiTi';
   font-size: var(--ts2);
   line-height: 32px;
   letter-spacing: 0.01em;
