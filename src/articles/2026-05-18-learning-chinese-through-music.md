@@ -19,12 +19,10 @@ date: 2026-05-18
     <p>Songs help with emotional memory, passive vocabulary reinforcement and repeated exposure to common phrases.</p>
     <h2 id="songs-i-listen-to">Songs I listen to</h2>
       <ul>
-        <li><a href="/articles/songs/汪苏泷、BY2《有点甜》">汪苏泷、BY2《有点甜》</a></li>
-        <li><a href="/articles/songs/许嵩《有何不可》">许嵩《有何不可》</a></li>
-        <li><a href="/articles/songs/单依纯《续写》">单依纯《续写》</a></li>
-        <li><a href="/articles/songs/copy">copy</a></li>
+        <li><a href="/articles/songs/汪苏泷、BY2《有点甜》/">汪苏泷、BY2《有点甜》</a></li>
+        <li><a href="/articles/songs/许嵩《有何不可》/">许嵩《有何不可》</a></li>
+        <li><a href="/articles/songs/单依纯《续写》/">单依纯《续写》</a></li>
       </ul>
-
 
   </div>
 
