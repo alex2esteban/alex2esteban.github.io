@@ -4,7 +4,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget('./src/css/'); // changes trigger a build
 
   eleventyConfig.addPassthroughCopy('./src/images');
-  eleventyConfig.addPassthroughCopy('./src/posts');
+  eleventyConfig.addPassthroughCopy('./src/articles');
+  eleventyConfig.addPassthroughCopy('./src/fonts');
   eleventyConfig.addPassthroughCopy('./src/js');
 
   return {
