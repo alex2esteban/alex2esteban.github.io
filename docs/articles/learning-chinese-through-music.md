@@ -21,10 +21,10 @@ date: 2026-05-18
       <ul>
         <li><a href="/articles/songs/汪苏泷、BY2《有点甜》/">汪苏泷、BY2《有点甜》</a></li>
         <li><a href="/articles/songs/许嵩《有何不可》/">许嵩《有何不可》</a></li>
-        <li><a href="/articles/songs/单依纯《续写》/">林俊杰《她说》</a></li>
+        <li><a href="/articles/songs/林俊杰《她说》/">林俊杰《她说》</a></li>
         <li><a href="/articles/songs/单依纯《续写》/">单依纯《续写》</a></li>
-        <li><a href="/articles/songs/单依纯《续写》/">单依纯《想你时风起》</a></li>
-        <li><a href="/articles/songs/单依纯《续写》/">鱼椒盐《勿惹》</a></li>
+        <li><a href="/articles/songs/单依纯《想你时风起》/">单依纯《想你时风起》</a></li>
+        <li><a href="/articles/songs/鱼椒盐《勿惹》/">鱼椒盐《勿惹》</a></li>
       </ul>
 
   </div>
