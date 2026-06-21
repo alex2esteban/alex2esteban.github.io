@@ -15,7 +15,7 @@ date: 2026-05-18
   </div>
 
   <div class="main-content">
-    <p>I use Chinese songs as a way to improve listening comprehension and practice pronunciation. It is also a secondary method to improve vocabulary, the main method being <a href="/articles/2026-04-26-method-for-learning-vocabulary/">this one</a>.</p>
+    <p>I use Chinese songs as a way to improve listening comprehension and practice pronunciation. It is also a secondary method to improve vocabulary, the main method being <a href="/articles/method-for-learning-vocabulary/">this one</a>.</p>
     <p>Songs help with emotional memory, passive vocabulary reinforcement and repeated exposure to common phrases.</p>
     <h2 id="songs-i-listen-to">Songs I listen to</h2>
       <ul>

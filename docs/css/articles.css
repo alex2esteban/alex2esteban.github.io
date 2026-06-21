@@ -92,6 +92,23 @@
   margin: 0;
 }
 
+
+/* ------------------ AI prompt ------------------ */
+.ai-prompt {
+  border-left: 2px solid var(--black-50);
+  padding-left: 16px;
+  margin: 16px 0;
+  color: var(--black-75);
+  font-size: 0.95em;
+}
+
+
+.article-img {
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+}
+
 /* ------------------ Songs ------------------ */
 .song {
   font-family: 'KaiTi', 'KaiTi SC', 'Noto Sans SC';
