@@ -1,7 +1,11 @@
+:root {
+  --blue: #2980b9;
+}
+
 body { 
   font-family: system-ui, -apple-system, sans-serif; 
   max-width: 700px; 
-  margin: 2rem auto; 
+  margin: 6rem auto 2rem auto; 
   padding: 0 1rem; 
   background-color: #fcfcfc;
   color: #222;
@@ -42,7 +46,7 @@ h1 {
 }
 
 .ipa { 
-  color: #2980b9; /* A nice blue for IPA */
+  color: var(--blue); /* A nice blue for IPA */
   margin-left: 0.5rem; 
   font-weight: normal; 
   font-family: "Lucida Sans Unicode", "Arial Unicode MS", sans-serif; /* Best for IPA characters */

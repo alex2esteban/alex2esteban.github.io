@@ -1,7 +1,11 @@
+:root {
+  --red: #d35400;
+}
+
 body { 
   font-family: system-ui, -apple-system, sans-serif; 
   max-width: 700px; 
-  margin: 2rem auto; 
+  margin: 6rem auto 2rem auto; 
   padding: 0 1rem; 
   background-color: #fcfcfc;
   color: #222;
@@ -12,9 +16,15 @@ h1 {
   margin-bottom: 1rem; 
 }
 
+.search-wrapper {
+  position: relative;
+  width: 100%;
+}
+
 #search { 
   width: 100%; 
   padding: 0.75rem; 
+  padding-left: 2.8rem; /* Make room for the circle on the left */
   font-size: 1.1rem; 
   box-sizing: border-box; 
   border: 1px solid #ccc;
@@ -43,7 +53,7 @@ h1 {
 }
 
 .pinyin { 
-  color: #d35400; 
+  color: var(--red); 
   margin-left: 0.5rem; 
   font-weight: normal; 
 }
@@ -73,4 +83,44 @@ footer {
 
 footer a {
   color: #999;
+}
+
+
+
+
+
+
+
+
+/* --- Search Bar Clear Button --- */
+
+
+.clear-btn {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  color: #666;
+  transition: all 0.2s;
+}
+
+.clear-btn:hover {
+  background-color: #e0e0e0;
+  color: #222;
+}
+
+/* When text is typed, the button gets a slightly different look */
+.clear-btn.has-text {
+  background-color: #e8e8e8;
+  font-size: 12px; /* Make the X slightly smaller */
 }

@@ -2,6 +2,7 @@
 const searchInput = document.getElementById('search');
 const statusEl = document.getElementById('status');
 const resultsEl = document.getElementById('results');
+const clearBtn = document.getElementById('clear-btn'); // Added clear button
 
 let dictionary = []; 
 let ready = false;
@@ -136,11 +137,23 @@ function render(entries) {
     .join('');
 }
 
+// --- UPDATED: Input Event Listener ---
 let debounceTimer;
 searchInput.addEventListener('input', () => {
+  const query = searchInput.value;
+  
+  // 1. Update the clear button icon based on whether there is text
+  if (query.length > 0) {
+    clearBtn.textContent = '✕';
+    clearBtn.classList.add('has-text');
+  } else {
+    clearBtn.textContent = '→';
+    clearBtn.classList.remove('has-text');
+  }
+
+  // 2. Perform the search (with debounce)
   clearTimeout(debounceTimer);
   debounceTimer = setTimeout(() => {
-    const query = searchInput.value;
     if (query.length < 1) {
       resultsEl.innerHTML = '';
       return;
@@ -148,4 +161,13 @@ searchInput.addEventListener('input', () => {
     const results = search(query);
     render(results);
   }, 150); 
+});
+
+// --- NEW: Clear Button Click Event ---
+clearBtn.addEventListener('click', () => {
+  searchInput.value = '';           // Clear the text input
+  resultsEl.innerHTML = '';         // Clear the results list
+  clearBtn.textContent = '→';       // Reset button to the arrow
+  clearBtn.classList.remove('has-text');
+  searchInput.focus();              // Put the cursor back in the search bar
 });
