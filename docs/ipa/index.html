@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English IPA Dictionary</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>English IPA Dictionary</h1>
+  
+  <input id="search" type="text" placeholder="Type English word or IPA (e.g., hello, həˈloʊ)…" autofocus>
+  
+  <div id="status">Loading dictionary…</div>
+  <div id="results"></div>
+
+  <footer>
+    <!-- Update this if your CSV comes from a specific open-source project -->
+    Pronunciation data from <a href="https://github.com/open-dict-data/ipa-dict" target="_blank" rel="noopener">open-dict-data</a>.
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
