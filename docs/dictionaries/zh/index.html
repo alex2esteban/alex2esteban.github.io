@@ -3,13 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Personal Dictionary</title>
+  <title>zh</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 font-family=%22system-ui,sans-serif%22 font-weight=%22bold%22 font-size=%2260%22 fill=%22%23d35400%22>zh</text></svg>">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>词典</h1>
-  
+    <header class="dict-header">
+    <h1 class="dict-title">
+      <span class="title-main" id="title-main-label">词典</span><span class="title-sub"> · <span id="script-label">简体</span></span>
+    </h1>
+    <button id="script-toggle" class="toggle-icon" aria-label="Toggle script" title="Switch to Traditional">⇆</button>
+  </header>
+
   <div class="search-wrapper">
     <button id="clear-btn" class="clear-btn" aria-label="Clear search">→</button>
     <input id="search" type="text" placeholder="在此输入……" autofocus>

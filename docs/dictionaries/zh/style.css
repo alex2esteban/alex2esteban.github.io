@@ -85,16 +85,6 @@ footer a {
   color: #999;
 }
 
-
-
-
-
-
-
-
-/* --- Search Bar Clear Button --- */
-
-
 .clear-btn {
   position: absolute;
   left: 10px;
@@ -119,8 +109,52 @@ footer a {
   color: #222;
 }
 
-/* When text is typed, the button gets a slightly different look */
-.clear-btn.has-text {
+.clear-btn.has-text { /* When text is typed, the button gets a slightly different look */
   background-color: #e8e8e8;
   font-size: 12px; /* Make the X slightly smaller */
+}
+
+/* --- Header & Toggle Icon --- */
+.dict-header {
+  display: flex;
+  align-items: baseline; /* Aligns items by the bottom of the text */
+  justify-content: left; 
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.dict-title {
+  margin: 0;
+  font-family: "Kaiti SC", "STKaiti", "KaiTi", "楷体", serif;
+}
+
+/* The large, bold '词典' */
+.title-main {
+  font-size: 2.25rem;
+  font-weight: bold;
+}
+
+/* The smaller, normal '·简体' */
+.title-sub {
+  font-size: 1.25rem;
+  font-weight: normal;
+}
+
+.toggle-icon {
+  background: none;
+  border: none;
+  font-size: 1.25rem; /* Matches the smaller text height */
+  color: #888;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  /* Nudge it up slightly so it perfectly aligns with the smaller text */
+  position: relative;
+  top: -2px; 
+  transition: color 0.1s, transform 0.1s;
+}
+
+.toggle-icon:hover {
+  color: #d35400; 
+  transform: scale(1.05); 
 }

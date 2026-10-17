@@ -2,10 +2,16 @@
 const searchInput = document.getElementById('search');
 const statusEl = document.getElementById('status');
 const resultsEl = document.getElementById('results');
-const clearBtn = document.getElementById('clear-btn'); // Added clear button
+const clearBtn = document.getElementById('clear-btn');
+const dictTitle = document.getElementById('dict-title');
+const scriptLabel = document.getElementById('script-label');
+const titleMainLabel = document.getElementById('title-main-label');
 
 let dictionary = []; 
 let ready = false;
+let showTraditional = false;
+let lastQuery = '';
+const toggleBtn = document.getElementById('script-toggle');
 
 const worker = new Worker('worker.js');
 worker.postMessage({ url: 'cedict.txt' });
@@ -36,28 +42,76 @@ function search(query) {
   const isChinese = /[\u4e00-\u9fff]/.test(q);
   const results = [];
 
+  // Prepare the pinyin query
+  const qClean = q.replace(/[0-9]/g, '').replace(/\s+/g, '');
+
   for (const entry of dictionary) {
+    let score = 0;
+
     if (isChinese) {
-      if (entry.simplified.includes(q) || entry.traditional.includes(q)) {
-        results.push(entry);
+      const simpLower = entry.simplified.toLowerCase();
+      const tradLower = entry.traditional.toLowerCase();
+
+      // 1. Exact Chinese Match
+      if (simpLower === q || tradLower === q) {
+        score += 1000;
+      }
+      // 2. Starts with Chinese Query
+      else if (simpLower.startsWith(q) || tradLower.startsWith(q)) {
+        score += 500;
+      }
+      // 3. Contains Chinese Query
+      else if (simpLower.includes(q) || tradLower.includes(q)) {
+        score += 100;
       }
     } else {
       const pinyinClean = entry.pinyin.replace(/[0-9]/g, '').toLowerCase().replace(/\s+/g, '');
-      const qClean = q.replace(/[0-9]/g, '').replace(/\s+/g, '');
 
-      if (
-        pinyinClean.includes(qClean) ||
-        entry.definitions.some(def => def.toLowerCase().includes(q))
-      ) {
-        results.push(entry);
+      // 1. Exact Pinyin Match
+      if (pinyinClean === qClean) {
+        score += 900;
+      }
+      // 2. Starts with Pinyin
+      else if (pinyinClean.startsWith(qClean)) {
+        score += 400;
+      }
+      // 3. Contains Pinyin
+      else if (pinyinClean.includes(qClean)) {
+        score += 80;
+      }
+      // 4. English Definition Match
+      else if (entry.definitions.some(def => def.toLowerCase().includes(q))) {
+        score += 50;
       }
     }
-    if (results.length >= 100) break; 
+
+    // If it matched anything, add it to the pool
+    if (score > 0) {
+      results.push({ entry, score });
+    }
   }
-  return results;
+
+  // Sort the results!
+  results.sort((a, b) => {
+    // 1. Highest score first
+    if (b.score !== a.score) {
+      return b.score - a.score;
+    }
+    // 2. If scores are tied, shortest word first (e.g., 控制 before 控制台)
+    const lenA = a.entry.simplified.length;
+    const lenB = b.entry.simplified.length;
+    if (lenA !== lenB) {
+      return lenA - lenB;
+    }
+    // 3. Alphabetical fallback
+    return a.entry.simplified.localeCompare(b.entry.simplified);
+  });
+
+  // Return only the top 100 matches
+  return results.slice(0, 100).map(r => r.entry);
 }
 
-// --- NEW: Pinyin Tone Mark Converter ---
+// Pinyin Tone Mark Converter ---
 function convertPinyin(pinyin) {
   return pinyin.split(' ').map(syllable => {
     const toneMatch = syllable.match(/([1-5])$/);
@@ -109,7 +163,6 @@ function convertPinyin(pinyin) {
     return word;
   }).join(' ');
 }
-// ---------------------------------------
 
 function render(entries) {
   if (!entries.length) {
@@ -119,14 +172,14 @@ function render(entries) {
 
   resultsEl.innerHTML = entries
     .map((e) => {
-      const tradText = (e.traditional !== e.simplified) ? ` (${e.traditional})` : '';
-      // Use the converter here!
+      // Choose which script to display based on the toggle state
+      const displayWord = showTraditional ? e.traditional : e.simplified;
       const displayPinyin = convertPinyin(e.pinyin); 
       
       return `
       <div class="entry">
         <div>
-          <span class="word">${e.simplified}${tradText}</span>
+          <span class="word">${displayWord}</span>
           <span class="pinyin">[${displayPinyin}]</span>
         </div>
         <div class="defs">
@@ -137,12 +190,12 @@ function render(entries) {
     .join('');
 }
 
-// --- UPDATED: Input Event Listener ---
+// Input Event Listener ---
 let debounceTimer;
 searchInput.addEventListener('input', () => {
   const query = searchInput.value;
+  lastQuery = query; // <-- Add this line
   
-  // 1. Update the clear button icon based on whether there is text
   if (query.length > 0) {
     clearBtn.textContent = '✕';
     clearBtn.classList.add('has-text');
@@ -151,7 +204,6 @@ searchInput.addEventListener('input', () => {
     clearBtn.classList.remove('has-text');
   }
 
-  // 2. Perform the search (with debounce)
   clearTimeout(debounceTimer);
   debounceTimer = setTimeout(() => {
     if (query.length < 1) {
@@ -163,11 +215,31 @@ searchInput.addEventListener('input', () => {
   }, 150); 
 });
 
-// --- NEW: Clear Button Click Event ---
+// Clear Button Click Event ---
 clearBtn.addEventListener('click', () => {
   searchInput.value = '';           // Clear the text input
   resultsEl.innerHTML = '';         // Clear the results list
   clearBtn.textContent = '→';       // Reset button to the arrow
   clearBtn.classList.remove('has-text');
   searchInput.focus();              // Put the cursor back in the search bar
+});
+
+toggleBtn.addEventListener('click', () => {
+  showTraditional = !showTraditional;
+  
+  // Update BOTH the main title and the sub label
+  if (showTraditional) {
+    titleMainLabel.textContent = '詞典'; // Swaps 词典 to 詞典
+    scriptLabel.textContent = '繁體';
+    toggleBtn.title = 'Switch to Simplified';
+  } else {
+    titleMainLabel.textContent = '词典'; // Swaps 詞典 back to 词典
+    scriptLabel.textContent = '简体';
+    toggleBtn.title = 'Switch to Traditional';
+  }
+  
+  // Instantly re-render
+  if (lastQuery) {
+    render(search(lastQuery));
+  }
 });
