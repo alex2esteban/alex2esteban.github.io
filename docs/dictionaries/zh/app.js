@@ -172,18 +172,49 @@ function render(entries) {
 
   resultsEl.innerHTML = entries
     .map((e) => {
-      // Choose which script to display based on the toggle state
       const displayWord = showTraditional ? e.traditional : e.simplified;
       const displayPinyin = convertPinyin(e.pinyin); 
+      
+      // Check if the displayed word exactly matches what is in the search bar
+      const isExactMatch = displayWord === lastQuery.trim();
+
+      let classifiers = [];
+      let cleanDefs = [];
+
+      e.definitions.forEach(def => {
+        if (def.startsWith("CL:")) {
+          let clRaw = def.substring(3);
+          clRaw = clRaw.replace(/\[.*?\]/g, ''); 
+          const clItems = clRaw.split(',');
+          
+          clItems.forEach(item => {
+            const parts = item.trim().split('|');
+            if (parts.length === 2) {
+              classifiers.push({ trad: parts[0], simp: parts[1] });
+            } else if (parts.length === 1) {
+              classifiers.push({ trad: parts[0], simp: parts[0] });
+            }
+          });
+        } else {
+          cleanDefs.push(def);
+        }
+      });
+
+      let clDisplay = '';
+      if (classifiers.length > 0) {
+        const clWords = classifiers.map(c => showTraditional ? c.trad : c.simp);
+        clDisplay = ` <span class="classifier">· ${clWords.join(', ')}</span>`;
+      }
       
       return `
       <div class="entry">
         <div>
-          <span class="word">${displayWord}</span>
-          <span class="pinyin">[${displayPinyin}]</span>
+          <!-- Added conditional class here -->
+          <span class="word ${isExactMatch ? 'exact-match' : ''}">${displayWord}</span>
+          <span class="pinyin">[${displayPinyin}]</span>${clDisplay}
         </div>
         <div class="defs">
-          ${e.definitions.map((d) => `<span>${d}</span>`).join(' ')}
+          ${cleanDefs.map((d) => `<span>${d}</span>`).join(' ')}
         </div>
       </div>`;
     })

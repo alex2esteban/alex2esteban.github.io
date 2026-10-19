@@ -52,6 +52,10 @@ h1 {
   font-family: "Kaiti SC", "STKaiti", "KaiTi", "楷体", serif;
 }
 
+.word.exact-match {
+  font-size: 2.6rem;
+}
+
 .pinyin { 
   color: var(--red); 
   margin-left: 0.5rem; 
@@ -157,4 +161,11 @@ footer a {
 .toggle-icon:hover {
   color: #d35400; 
   transform: scale(1.05); 
+}
+
+.classifier {
+  font-size: 0.95rem;
+  color: #666;
+  font-weight: normal;
+  white-space: nowrap; /* Prevents the CL from breaking onto a new line */
 }
