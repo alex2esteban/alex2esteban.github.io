@@ -11,10 +11,71 @@ let dictionary = [];
 let ready = false;
 let showTraditional = false;
 let lastQuery = '';
+let hskLevels = new Map();
+let hskLoadError = '';
 const toggleBtn = document.getElementById('script-toggle');
 
 const worker = new Worker('worker.js');
 worker.postMessage({ url: 'cedict.txt' });
+
+function updateStatus() {
+  if (!ready) return;
+
+  const entryCount = dictionary.length.toLocaleString();
+  statusEl.textContent = hskLoadError
+    ? `${entryCount} entries loaded. HSK levels unavailable: ${hskLoadError}`
+    : `${entryCount} entries loaded. Ready!`;
+}
+
+async function loadHskLevels() {
+  const response = await fetch('hsk.csv');
+  if (!response.ok) {
+    throw new Error(`Could not load hsk.csv (HTTP ${response.status}).`);
+  }
+
+  const lines = (await response.text()).replace(/^\uFEFF/, '').split(/\r?\n/);
+  if (lines.shift()?.trim() !== 'HSK,Word') {
+    throw new Error('hsk.csv must have HSK and Word columns.');
+  }
+
+  const levelsByWord = new Map();
+  for (const [index, line] of lines.entries()) {
+    if (!line.trim()) continue;
+
+    const separator = line.indexOf(',');
+    if (separator < 1 || separator === line.length - 1) {
+      throw new Error(`Invalid hsk.csv row ${index + 2}.`);
+    }
+
+    const level = line.slice(0, separator).trim();
+    const words = line.slice(separator + 1).trim().replace(/^"|"$/g, '').split(/[｜|]/);
+    if (!level || words.some(word => !word.trim())) {
+      throw new Error(`Invalid hsk.csv row ${index + 2}.`);
+    }
+
+    for (const word of words) {
+      const normalizedWord = word.trim();
+      if (!levelsByWord.has(normalizedWord)) {
+        levelsByWord.set(normalizedWord, new Set());
+      }
+      levelsByWord.get(normalizedWord).add(level);
+    }
+  }
+
+  if (levelsByWord.size === 0) {
+    throw new Error('hsk.csv contains no vocabulary entries.');
+  }
+
+  hskLevels = levelsByWord;
+  if (lastQuery) render(search(lastQuery));
+  updateStatus();
+}
+
+loadHskLevels().catch((error) => {
+  hskLoadError = error instanceof Error ? error.message : String(error);
+  console.error(hskLoadError);
+  updateStatus();
+});
 
 worker.onmessage = (e) => {
   if (e.data.error) {
@@ -31,7 +92,7 @@ worker.onmessage = (e) => {
   }
 
   ready = true;
-  statusEl.textContent = `${dictionary.length.toLocaleString()} entries loaded. Ready!`;
+  updateStatus();
 };
 
 function search(query) {
@@ -205,13 +266,18 @@ function render(entries) {
         const clWords = classifiers.map(c => showTraditional ? c.trad : c.simp);
         clDisplay = ` <span class="classifier">· ${clWords.join(', ')}</span>`;
       }
+      const entryHskLevels = [...(hskLevels.get(e.simplified) || [])]
+        .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+      const hskDisplay = entryHskLevels
+        .map(level => `<span class="hsk-level">${level}</span>`)
+        .join('');
       
       return `
       <div class="entry">
         <div>
           <!-- Added conditional class here -->
           <span class="word ${isExactMatch ? 'exact-match' : ''}">${displayWord}</span>
-          <span class="pinyin">[${displayPinyin}]</span>${clDisplay}
+          <span class="pinyin">[${displayPinyin}]</span>${clDisplay}${hskDisplay}
         </div>
         <div class="defs">
           ${cleanDefs.map((d) => `<span>${d}</span>`).join(' ')}

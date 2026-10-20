@@ -173,3 +173,15 @@ footer a {
   font-weight: normal;
   white-space: nowrap; /* Prevents the CL from breaking onto a new line */
 }
+
+.hsk-level {
+  display: inline-block;
+  margin-left: 0.35rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  background: #fce8dc;
+  color: var(--red);
+  font-size: 0.75rem;
+  font-weight: 600;
+  vertical-align: middle;
+}
