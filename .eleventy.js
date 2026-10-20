@@ -1,7 +1,9 @@
 module.exports = function (eleventyConfig) {
 
-  eleventyConfig.addPassthroughCopy('./src/css/'); // on build, it copies the files and adds them to output directory
-  eleventyConfig.addWatchTarget('./src/css/'); // changes trigger a build
+  eleventyConfig.addPassthroughCopy('./src/alex/css/');
+  eleventyConfig.addWatchTarget('./src/alex/css/');
+  eleventyConfig.addPassthroughCopy('./src/index.css');
+  eleventyConfig.addWatchTarget('./src/index.css');
 
   // Personal
   eleventyConfig.addPassthroughCopy('./src/personal/images');

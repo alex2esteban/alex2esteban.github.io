@@ -1,7 +1,7 @@
-# Àlex personal website
+# 清华蒋文彦
 
 ## Hosted
-- https://alex2esteban.github.io
+- https://qhjwy.github.io
 
 ## Local setup
 1. Go to project folder: ``cd Desktop\web-projects\personal``
