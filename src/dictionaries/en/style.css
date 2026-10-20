@@ -7,6 +7,9 @@ body {
   max-width: 700px; 
   margin: 6rem auto 2rem auto; 
   padding: 0 1rem; 
+  min-height: calc(100vh - 8rem);
+  display: flex;
+  flex-direction: column;
   background-color: #fcfcfc;
   color: #222;
 }
@@ -33,6 +36,7 @@ h1 {
 
 #results { 
   margin-top: 1.5rem; 
+  margin-bottom: 3rem;
 }
 
 .entry { 
@@ -55,7 +59,7 @@ h1 {
 /* The .defs styles have been completely removed */
 
 footer {
-  margin-top: 3rem; 
+  margin-top: auto;
   font-size: 0.8rem; 
   color: #999; 
   text-align: center;
