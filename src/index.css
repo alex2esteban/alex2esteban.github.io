@@ -43,38 +43,101 @@ h1 {
 }
 
 .destination {
+  padding: 16px;
+  border: 1px solid #d8d8d4;
+  border-radius: 4px;
+  background: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 160ms ease;
+}
+
+.destination-alex {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
   min-height: 64px;
-  padding: 16px;
-  border: 1px solid #d8d8d4;
-  border-radius: 4px;
-  background: #fff;
   color: inherit;
-  font-size: 16px;
-  font-weight: 600;
   text-decoration: none;
 }
 
-.destination:hover {
+.destination-alex:hover,
+.destination-dictionaries:hover,
+.destination-dictionaries:focus-within {
   background: #f0f0ed;
 }
 
-.destination:focus-visible {
+.destination-alex:focus-visible,
+.destination-heading:focus-visible,
+.dictionary-links a:focus-visible {
   outline: 2px solid #555;
   outline-offset: 2px;
 }
 
-.destination span {
+.destination-alex span,
+.destination-heading span {
   color: #666;
   font-size: 14px;
   font-weight: 400;
 }
 
+.destination-heading {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 32px;
+  margin: -8px;
+  padding: 8px;
+  border-radius: 2px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.dictionary-links {
+  display: grid;
+  gap: 2px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dictionary-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-self: start;
+  width: fit-content;
+  padding-block: 3px;
+  border-radius: 2px;
+  color: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: transform 160ms ease, font-weight 160ms ease;
+}
+
+.dictionary-links a:hover,
+.dictionary-links a:focus-visible {
+  font-weight: 700;
+  transform: translateX(3px);
+}
+
+.dictionary-links img {
+  width: 24px;
+  height: 24px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .destination,
+  .dictionary-links a {
+    transition: none;
+  }
+}
+
 @media (max-width: 420px) {
-  .destination {
+  .destination-alex {
     align-items: flex-start;
     flex-direction: column;
     gap: 4px;

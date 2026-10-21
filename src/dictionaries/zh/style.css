@@ -1,5 +1,12 @@
 :root {
   --red: #d35400;
+  --hsk1: #C75F5F;
+  --hsk2: #C7B75F;
+  --hsk3: #C78A5F;
+  --hsk4: #6FBF6F;
+  --hsk5: #8A6FC7;
+  --hsk6: #5F86C7;
+  --hsk7-9: #808080;
 }
 
 body { 
@@ -179,9 +186,26 @@ footer a {
   margin-left: 0.35rem;
   padding: 0.1rem 0.4rem;
   border-radius: 4px;
-  background: #fce8dc;
-  color: var(--red);
   font-size: 0.75rem;
   font-weight: 600;
   vertical-align: middle;
+}
+
+.hsk1 { background: color-mix(in srgb, var(--hsk1) 14%, white); color: var(--hsk1); }
+.hsk2 { background: color-mix(in srgb, var(--hsk2) 14%, white); color: var(--hsk2); }
+.hsk3 { background: color-mix(in srgb, var(--hsk3) 14%, white); color: var(--hsk3); }
+.hsk4 { background: color-mix(in srgb, var(--hsk4) 14%, white); color: var(--hsk4); }
+.hsk5 { background: color-mix(in srgb, var(--hsk5) 14%, white); color: var(--hsk5); }
+.hsk6 { background: color-mix(in srgb, var(--hsk6) 14%, white); color: var(--hsk6); }
+.hsk7-9 { background: color-mix(in srgb, var(--hsk7-9) 14%, white); color: var(--hsk7-9); }
+
+.hsk-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.hsk-legend .hsk-level {
+  margin-left: 0;
 }

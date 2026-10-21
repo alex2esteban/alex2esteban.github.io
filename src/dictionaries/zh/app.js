@@ -13,7 +13,20 @@ let showTraditional = false;
 let lastQuery = '';
 let hskLevels = new Map();
 let hskLoadError = '';
+let hskReady = false;
 const toggleBtn = document.getElementById('script-toggle');
+const hskLevelClasses = {
+  HSK1: 'hsk1',
+  HSK2: 'hsk2',
+  HSK3: 'hsk3',
+  HSK4: 'hsk4',
+  HSK5: 'hsk5',
+  HSK6: 'hsk6',
+  'HSK7-9': 'hsk7-9',
+  HSK7: 'hsk7-9',
+  HSK8: 'hsk7-9',
+  HSK9: 'hsk7-9'
+};
 
 const worker = new Worker('worker.js');
 worker.postMessage({ url: 'cedict.txt' });
@@ -22,9 +35,18 @@ function updateStatus() {
   if (!ready) return;
 
   const entryCount = dictionary.length.toLocaleString();
-  statusEl.textContent = hskLoadError
-    ? `${entryCount} entries loaded. HSK levels unavailable: ${hskLoadError}`
-    : `${entryCount} entries loaded. Ready!`;
+  if (hskLoadError) {
+    statusEl.textContent = `${entryCount} entries loaded. HSK levels unavailable: ${hskLoadError}`;
+    return;
+  }
+  if (!hskReady) {
+    statusEl.textContent = `${entryCount} entries loaded. Loading HSK levels...`;
+    return;
+  }
+
+  const hskEntryCount = dictionary.filter(entry => hskLevels.has(entry.simplified)).length;
+  const hskEntryPercentage = (hskEntryCount / dictionary.length * 100).toFixed(1);
+  statusEl.textContent = `${entryCount} entries loaded. ${hskEntryCount.toLocaleString()} entries have HSK levels (${hskEntryPercentage}%).`;
 }
 
 async function loadHskLevels() {
@@ -67,6 +89,7 @@ async function loadHskLevels() {
   }
 
   hskLevels = levelsByWord;
+  hskReady = true;
   if (lastQuery) render(search(lastQuery));
   updateStatus();
 }
@@ -154,6 +177,12 @@ function search(query) {
 
   // Sort the results!
   results.sort((a, b) => {
+    // Prefer HSK-tagged entries, then preserve the existing relevance ranking.
+    const aHasHsk = hskLevels.has(a.entry.simplified);
+    const bHasHsk = hskLevels.has(b.entry.simplified);
+    if (aHasHsk !== bHasHsk) {
+      return Number(bHasHsk) - Number(aHasHsk);
+    }
     // 1. Highest score first
     if (b.score !== a.score) {
       return b.score - a.score;
@@ -269,7 +298,7 @@ function render(entries) {
       const entryHskLevels = [...(hskLevels.get(e.simplified) || [])]
         .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
       const hskDisplay = entryHskLevels
-        .map(level => `<span class="hsk-level">${level}</span>`)
+        .map(level => `<span class="hsk-level ${hskLevelClasses[level] || ''}">${level}</span>`)
         .join('');
       
       return `
