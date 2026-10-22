@@ -52,7 +52,7 @@ h1 {
   transition: background-color 160ms ease;
 }
 
-.destination-alex {
+.destination-link {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -62,20 +62,20 @@ h1 {
   text-decoration: none;
 }
 
-.destination-alex:hover,
+.destination-link:hover,
 .destination-dictionaries:hover,
 .destination-dictionaries:focus-within {
   background: #f0f0ed;
 }
 
-.destination-alex:focus-visible,
+.destination-link:focus-visible,
 .destination-heading:focus-visible,
 .dictionary-links a:focus-visible {
   outline: 2px solid #555;
   outline-offset: 2px;
 }
 
-.destination-alex span,
+.destination-link span,
 .destination-heading span {
   color: #666;
   font-size: 14px;
@@ -137,7 +137,7 @@ h1 {
 }
 
 @media (max-width: 420px) {
-  .destination-alex {
+  .destination-link {
     align-items: flex-start;
     flex-direction: column;
     gap: 4px;

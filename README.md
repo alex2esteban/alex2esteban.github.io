@@ -1,9 +1,22 @@
-# 清华蒋文彦
+# Projects hub
 
-## Hosted
-- https://qhjwy.github.io
+This repository contains the static homepage linking to my projects:
 
-## Local setup
-1. Go to project folder: ``cd Desktop\web-projects\personal``
-2. Run 11ty: ``npm start``
-3. Open in browser: ``http://localhost:8081/``
+- https://qhjwy.github.io/alex/
+- https://qhjwy.github.io/dictionaries/
+- https://qhjwy.github.io/zh/
+- https://qhjwy.github.io/proves/
+
+## Run locally
+
+From the repository root, start Python's built-in static file server:
+
+```sh
+python3 -m http.server 8081
+```
+
+Open http://localhost:8081 in your browser. Press `Ctrl+C` in the terminal to
+stop the server.
+
+GitHub Pages publishes from the repository root. To update the hub, edit
+`index.html` or `index.css` and push the changes; no build step is required.
